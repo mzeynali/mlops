@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, jsonify
 import os
 import numpy as np
 import yaml
-import joblib 
+import joblib
+import mlflow
 
 webapp_root = "webapp"
 params_path = "params.yaml"
@@ -25,9 +26,9 @@ def read_params(config_path):
 def predict(data):
     config = read_params(params_path)
     model_dir_path = config["model_webapp_dir"]
-    model = joblib.load(model_dir_path)
-    prediction = model.predict(data).tolist()[0]
-    return prediction 
+    # model = joblib.load(model_dir_path)
+    model = joblib.load("/home/mm/projects/mlops/end2end/mlops/artifacts/1/45e7d5cb8bf64425ade4e216a2cdf4e6/artifacts/model/model.pkl")
+    return model.predict(data).tolist()[0] 
 
 def validate_input(dict_request):
     for _, val in dict_request.items():
