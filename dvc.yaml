@@ -1,6 +1,6 @@
 stages:
   raw_dataset_creation:
-    cmd: python src/data/load_data.py --config=params.yaml
+    cmd: pwd & python src/data/load_data.py --config=params.yaml
     deps:
     - src/data/load_data.py
     - data/external/train.csv
